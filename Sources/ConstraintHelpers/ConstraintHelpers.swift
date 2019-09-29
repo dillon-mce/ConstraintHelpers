@@ -29,37 +29,33 @@ public extension UIView {
     ///   - equalWidth: if not nil, sets the widthAnchor equal to the superview's widthAnchor, with a multiplier of the value
     ///   - height: if not nil, sets the heightAnchor equal to a constant of the value
     ///   - width: if not nil, sets the widthAnchor equal to a constant of the value
-    ///   - fallbackTop: if not nil and safeArea is not available, added to the top constraint constant
-    ///   - fallbackBottom: if not nil and safeArea is not available, added to the bottom constraint constant
-    func constrainToSuperView(_ superView: UIView, safeArea: Bool = false, top: CGFloat? = nil, bottom: CGFloat? = nil, leading: CGFloat? = nil, trailing: CGFloat? = nil, centerX: CGFloat? = nil, centerY: CGFloat? = nil, equalHeight: CGFloat? = nil, equalWidth: CGFloat? = nil, height: CGFloat? = nil, width: CGFloat? = nil, fallbackTop: CGFloat? = nil, fallbackBottom: CGFloat? = nil) {
+    func constrainToSuperView(_ superView: UIView, safeArea: Bool = false, top: CGFloat? = nil, bottom: CGFloat? = nil, leading: CGFloat? = nil, trailing: CGFloat? = nil, centerX: CGFloat? = nil, centerY: CGFloat? = nil, equalHeight: CGFloat? = nil, equalWidth: CGFloat? = nil, height: CGFloat? = nil, width: CGFloat? = nil) {
 
         superView.addConstrainedSubview(self)
 
         var newConstraints: [NSLayoutConstraint] = []
 
-        if var top = top {
+        if let top = top {
             let topAnchor: NSLayoutYAxisAnchor
 
-            // Get the safe area anchor if it is available and requested
-            if #available(iOS 11.0, *), safeArea {
+            // Get the safe area anchor if it is requested
+            if safeArea {
                 topAnchor = superView.safeAreaLayoutGuide.topAnchor
             } else {
                 topAnchor = superView.topAnchor
-                top += fallbackTop ?? 0
             }
 
             newConstraints.append(self.topAnchor.constraint(equalTo: topAnchor, constant: top))
         }
 
-        if var bottom = bottom {
+        if let bottom = bottom {
             let bottomAnchor: NSLayoutYAxisAnchor
 
-            // Get the safe area anchor if it is available and requested
-            if #available(iOS 11.0, *), safeArea {
+            // Get the safe area anchor if it is requested
+            if safeArea {
                 bottomAnchor = superView.safeAreaLayoutGuide.bottomAnchor
             } else {
                 bottomAnchor = superView.bottomAnchor
-                bottom += fallbackBottom ?? 0
             }
 
             newConstraints.append(bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: bottom))
@@ -68,8 +64,8 @@ public extension UIView {
         if let leading = leading {
             let leadingAnchor: NSLayoutXAxisAnchor
 
-            // Get the safe area anchor if it is available and requested
-            if #available(iOS 11.0, *), safeArea {
+            // Get the safe area anchor if it is requested
+            if safeArea {
                 leadingAnchor = superView.safeAreaLayoutGuide.leadingAnchor
             } else {
                 leadingAnchor = superView.leadingAnchor
@@ -81,8 +77,8 @@ public extension UIView {
         if let trailing = trailing {
             let trailingAnchor: NSLayoutXAxisAnchor
 
-            // Get the safe area anchor if it is available and requested
-            if #available(iOS 11.0, *), safeArea {
+            // Get the safe area anchor if it is requested
+            if safeArea {
                 trailingAnchor = superView.safeAreaLayoutGuide.trailingAnchor
             } else {
                 trailingAnchor = superView.trailingAnchor
@@ -102,8 +98,8 @@ public extension UIView {
         if let equalHeight = equalHeight {
             let heightAnchor: NSLayoutDimension
 
-            // Get the safe area anchor if it is available and requested
-            if #available(iOS 11.0, *), safeArea {
+            // Get the safe area anchor if it is requested
+            if safeArea {
                 heightAnchor = superView.safeAreaLayoutGuide.heightAnchor
             } else {
                 heightAnchor = superView.heightAnchor
@@ -115,8 +111,8 @@ public extension UIView {
         if let equalWidth = equalWidth {
             let widthAnchor: NSLayoutDimension
 
-            // Get the safe area anchor if it is available and requested
-            if #available(iOS 11.0, *), safeArea {
+            // Get the safe area anchor if it is requested
+            if safeArea {
                 widthAnchor = superView.safeAreaLayoutGuide.widthAnchor
             } else {
                 widthAnchor = superView.widthAnchor
@@ -152,7 +148,6 @@ public extension UIView {
     func constrainToSiblingView(_ siblingview: UIView, top: CGFloat? = nil, bottom: CGFloat? = nil, leading: CGFloat? = nil, trailing: CGFloat? = nil, above: CGFloat? = nil, below: CGFloat? = nil, before: CGFloat? = nil, behind: CGFloat? = nil, centerX: CGFloat? = nil, centerY: CGFloat? = nil, equalHeight: CGFloat? = nil, equalWidth: CGFloat? = nil, height: CGFloat? = nil, width: CGFloat? = nil) {
 
         self.translatesAutoresizingMaskIntoConstraints = false
-        siblingview.translatesAutoresizingMaskIntoConstraints = false
 
         var newConstraints: [NSLayoutConstraint] = []
 
