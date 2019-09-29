@@ -52,7 +52,7 @@ let view1 = UIView()
 view1.backgroundColor = .systemBlue
 let view2 = UIView()
 view2.backgroundColor = .systemRed
-let view3 = UIView
+let view3 = UIView()
 view3.backgroundColor = .systemYellow
 
 view2.constrainToSuperView(view,
