@@ -18,7 +18,7 @@ public extension UIView {
     ///
     /// - Parameters:
     ///   - superview: the superview
-    ///   - safeArea: boolean reflecting whether safeAreaLayoutGuide should be used or not. Defaults to false and is safe to use on any OS target
+    ///   - safeArea: boolean reflecting whether safeAreaLayoutGuide should be used or not. Defaults to false.
     ///   - top: if not nil, sets the topAnchor equal to the superview's topAnchor, with a constant of the value
     ///   - bottom: if not nil, sets the bottomAnchor equal to the superview's bottomAnchor, with a constant of the value
     ///   - leading: if not nil, sets the leadingAnchor equal to the superview's leadingAnchor, with a constant of the value
@@ -241,7 +241,7 @@ public extension UIView {
     ///
     /// - Parameters:
     ///   - view: the view to fill
-    ///   - safeArea: boolean reflecting whether safeAreaLayoutGuide should be used or not. Defaults to false and is safe to use on any OS target
+    ///   - safeArea: boolean reflecting whether safeAreaLayoutGuide should be used or not. Defaults to false.
     func constrainToFill(_ view: UIView, safeArea: Bool = false) {
         self.constrainToSuperView(view, safeArea: safeArea, top: 0, bottom: 0, leading: 0, trailing: 0)
     }
