@@ -3,7 +3,7 @@ import UIKit
 
 #endif
 
-extension UIView {
+public extension UIView {
 
     /// Adds a subview to be constrained progammatically. Also removes the view from its parent, if it has one.
     ///
