@@ -1,9 +1,10 @@
 # ConstraintHelpers
 
-Some constraint helpers to make build UI programmatically a little easier to read and write.
+These are some constraint helpers to make programmatically laid out UI a little easier to read and write. It is not the safest, fanciest, or best implementation but it works and it makes laying out your UI with constraints a lot more readable and faster to write. They do not and are not intended to cover everything that you can do with constraints, but they at least cover many of the most common scenarios, especially when they are used in conjunction with   `UIStackView`s.
 
 ## Examples:
 
+### Add Constrained Subview
 Use `addConstrainedSubview(_:)` to add a subview and set `translatesAutoresizingMaskIntoContstraints` to `false` at the same time. Helpful if you want to write your own constraints or if you want to constrain a view to its sibling:
 ```swift
 let view1 = UIView()
@@ -14,6 +15,7 @@ view1.addConstrainedSubview(view2)
 // Or use constrainToSibling(_:)
 ```
 
+### Constrain To Super View
 Use `constrainToSuperView(_:)` to add the view as a subview to another view with the given constraints:
 ```swift
 let view1 = UIView()
@@ -46,6 +48,7 @@ view2.constrainToSuperView(view1,
 ```
 ![Constrained centered with half height and eighty percent width](/Resources/Images/2019-09-29-centered.png)
 
+### Constrain To Sibling View
 Use `constrainToSiblingView(_:)` to constrain one view to another that is already in the same view hierarchy:
 ```swift
 let view1 = UIView()
